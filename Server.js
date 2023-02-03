@@ -9,11 +9,15 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 const connectDB = require("./Database/db");
 // Importing Routes
 const studentRoutes = require("./Routes/StudentRoutes");
+const loginRoutes = require("./Routes/LoginRoutes");
+
 const app = express();
 // Middlewares setup
 app.use(express.json());
 // Routes
-app.use("/v1/api/students", studentRoutes);
+app.use("/api/v1/students", studentRoutes);
+app.use("/api/v1/students", loginRoutes);
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 const start = async () => {
