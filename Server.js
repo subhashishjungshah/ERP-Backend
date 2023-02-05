@@ -8,8 +8,8 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 // Importing db connection
 const connectDB = require("./Database/db");
 // Importing Routes
-const studentRoutes = require("./Routes/StudentRoutes");
-const loginRoutes = require("./Routes/LoginRoutes");
+const studentRoutes = require("./Routes/StudentRoutes/StudentRoutes");
+const loginRoutes = require("./Routes/StudentRoutes/LoginRoutes");
 
 const app = express();
 // Middlewares setup

@@ -1,13 +1,12 @@
 const { StatusCodes } = require("http-status-codes");
-const Student = require("../models/student");
-const { BadRequestError, UnauthenticatedError } = require("../errors/index");
+const Student = require("../../models/student");
+const { BadRequestError, UnauthenticatedError } = require("../../errors/index");
 
 // Register Student controller
 const registerStudents = async (req, res) => {
   const student = await Student.create({ ...req.body });
   res.status(StatusCodes.CREATED).json(student);
 };
-
 // login controller
 const login = async (req, res) => {
   const { email, password } = req.body;
