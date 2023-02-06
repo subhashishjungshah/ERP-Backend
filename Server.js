@@ -1,6 +1,8 @@
+// Importing packages
 require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
+const cors = require("cors");
 
 // Importing middlewares
 const notFoundMiddleware = require("./middleware/not-found");
@@ -10,16 +12,19 @@ const connectDB = require("./Database/db");
 // Importing Routes
 const studentRoutes = require("./Routes/StudentRoutes/StudentRoutes");
 const loginRoutes = require("./Routes/StudentRoutes/LoginRoutes");
-
 const app = express();
+
 // Middlewares setup
+app.use(cors());
 app.use(express.json());
+
 // Routes
 app.use("/api/v1/students", studentRoutes);
 app.use("/api/v1/students", loginRoutes);
-
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
+// Server start function
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
