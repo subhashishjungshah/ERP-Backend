@@ -7,6 +7,7 @@ const registerStudents = async (req, res) => {
   const student = await Student.create({ ...req.body });
   res.status(StatusCodes.CREATED).json(student);
 };
+
 // login controller
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -25,8 +26,7 @@ const login = async (req, res) => {
   const token = student.createJWT();
   res.status(StatusCodes.OK).json({
     student: {
-      RegistrationNumber: student.RegistrationNumber,
-      name: student.firstName,
+      email: student.email,
     },
     token,
   });
