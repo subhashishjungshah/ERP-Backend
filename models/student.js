@@ -6,6 +6,15 @@ const studentSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  studentStatus: {
+    type: String,
+    enum: {
+      values: ["PASSED OUT", "ACTIVE", "DROPPED"],
+      message: "{VALUE} is not supported",
+    },
+    required: [true, "Student's status is required"],
+    default: "ACTIVE",
+  },
   firstName: {
     type: String,
     required: [true, "Please provide first name"],
@@ -33,7 +42,7 @@ const studentSchema = new mongoose.Schema({
     minlength: 6,
   },
   phoneNumber: {
-    type: String,
+    type: [String],
     required: [true, "Please provide phone number!"],
   },
   dob: {
@@ -46,7 +55,19 @@ const studentSchema = new mongoose.Schema({
   },
   enrollmentDate: {
     type: Date,
-    required: [true, "Please provide enrollment date!"],
+    default: Date.now(),
+  },
+  Section: {
+    type: String,
+    required: [true, "Please provide section!"],
+  },
+  currentSem: {
+    type: String,
+    enum: {
+      values: ["I", "II", "III", "IV", "V", "VI", "VII"],
+      message: "{VALUE} is not supported",
+    },
+    default: "I",
   },
   faculty: {
     type: String,
@@ -55,6 +76,25 @@ const studentSchema = new mongoose.Schema({
       message: "{VALUE} is not supported",
     },
     required: [true, "Please provide faculty!"],
+  },
+  fathersName: {
+    type: String,
+  },
+  mothersName: {
+    type: String,
+  },
+  guardianNumber: {
+    type: String,
+  },
+  educationalBackgroud: {
+    type: [String],
+  },
+  previousGrading: {
+    type: [Number],
+  },
+  scholorship: {
+    type: Number,
+    default: 0,
   },
 });
 
