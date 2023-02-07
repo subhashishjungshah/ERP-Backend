@@ -5,6 +5,7 @@ const studentSchema = new mongoose.Schema({
   RegistrationNumber: {
     type: String,
     unique: true,
+    trim: true,
   },
   studentStatus: {
     type: String,
@@ -14,18 +15,22 @@ const studentSchema = new mongoose.Schema({
     },
     required: [true, "Student's status is required"],
     default: "ACTIVE",
+    trim: true,
   },
   firstName: {
     type: String,
     required: [true, "Please provide first name"],
+    trim: true,
   },
   lastName: {
     type: String,
     required: [true, "Please provide last name"],
+    trim: true,
   },
   sex: {
     type: String,
     required: [true, "Please provide your sex!"],
+    trim: true,
   },
   email: {
     type: String,
@@ -35,23 +40,28 @@ const studentSchema = new mongoose.Schema({
       "Please provide valid email",
     ],
     unique: true,
+    trim: true,
   },
   password: {
     type: String,
     required: [true, "Please provide password"],
     minlength: 6,
+    trim: true,
   },
   phoneNumber: {
     type: [String],
     required: [true, "Please provide phone number!"],
+    trim: true,
   },
   dob: {
     type: Date,
     required: [true, "Please provide date of birth"],
+    trim: true,
   },
   address: {
     type: String,
     required: [true, "Please provide address!"],
+    trim: true,
   },
   enrollmentDate: {
     type: Date,
@@ -60,6 +70,7 @@ const studentSchema = new mongoose.Schema({
   Section: {
     type: String,
     required: [true, "Please provide section!"],
+    trim: true,
   },
   currentSem: {
     type: String,
@@ -67,24 +78,24 @@ const studentSchema = new mongoose.Schema({
       values: ["I", "II", "III", "IV", "V", "VI", "VII"],
       message: "{VALUE} is not supported",
     },
+    trim: true,
     default: "I",
   },
-  faculty: {
-    type: String,
-    enum: {
-      values: ["IT", "HM", "BBA"],
-      message: "{VALUE} is not supported",
-    },
-    required: [true, "Please provide faculty!"],
+  course: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Course",
   },
   fathersName: {
     type: String,
+    trim: true,
   },
   mothersName: {
     type: String,
+    trim: true,
   },
   guardianNumber: {
     type: String,
+    trim: true,
   },
   educationalBackgroud: {
     type: [String],
@@ -95,6 +106,7 @@ const studentSchema = new mongoose.Schema({
   scholorship: {
     type: Number,
     default: 0,
+    trim: true,
   },
 });
 
