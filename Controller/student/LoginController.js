@@ -26,6 +26,7 @@ const login = async (req, res) => {
   const token = student.createJWT();
   res.status(StatusCodes.OK).json({
     student: {
+      firstName: student.firstName,
       email: student.email,
     },
     token,
